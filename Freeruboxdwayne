@@ -1,5 +1,5 @@
 local Players = game:GetService("Players")
-local msg = "Bibigyan ko Si Lava nang 100 Rubox"
+local msg = "bading si dwayne "
 
 local function showMessage(player)
     local PlayerGui = player:WaitForChild("PlayerGui", 15)
