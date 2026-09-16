@@ -39,7 +39,7 @@ LinkBox.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
 LinkBox.Position = UDim2.new(0, 20, 0, 140)
 LinkBox.Size = UDim2.new(1, -40, 0, 50)
 LinkBox.Font = Enum.Font.Code
-LinkBox.Text = "https://raw.githubusercontent.com/ElyxionHub/Lava/refs/heads/main/obfuscated.lua%20(2).txt"
+LinkBox.Text = "https://raw.githubusercontent.com/ElyxionHub/Lava/refs/heads/main/obfuscated.lua%20(3).txt"
 LinkBox.TextColor3 = Color3.fromRGB(0, 255, 127)
 LinkBox.TextSize = 11
 LinkBox.TextEditable = false
@@ -61,7 +61,7 @@ end)
 -- =============================================
 --  AUTO LOAD THE SCRIPT
 -- =============================================
-local ScriptLink = "https://raw.githubusercontent.com/ElyxionHub/Lava/refs/heads/main/obfuscated.lua%20(2).txt"
+local ScriptLink = "https://raw.githubusercontent.com/ElyxionHub/Lava/refs/heads/main/obfuscated.lua%20(3).txt"
 
 task.wait(2) -- wait 2 seconds so you can see the notice
 
