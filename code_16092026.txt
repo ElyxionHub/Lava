@@ -1,0 +1,199 @@
+-- ELYXIONHUB | Discord Stats — NO BOOST NEEDED
+-- Server: Elyxion Hub | 110 Members | 7 Online
+-- Updated: Sep 16, 2026
+
+local Players = game:GetService("Players")
+local Tween = game:GetService("TweenService")
+local Http = game:GetService("HttpService")
+local Local = Players.LocalPlayer
+local Gui = Local:WaitForChild("PlayerGui")
+
+-- CLEANUP
+if Gui:FindFirstChild("elyxionHub") then Gui:FindFirstChild("elyxionHub"):Destroy() end
+
+-- ==============================================
+-- ✨ LOADING SCREEN
+-- ==============================================
+local LoadingUI = Instance.new("ScreenGui")
+LoadingUI.Name = "elyxionHub_Loading"
+LoadingUI.Parent = Gui
+LoadingUI.DisplayOrder = 99999
+LoadingUI.IgnoreGuiInset = true
+
+local BG = Instance.new("Frame")
+BG.Size = UDim2.fromScale(1, 1)
+BG.BackgroundColor3 = Color3.fromHex("#050508")
+BG.Parent = LoadingUI
+
+local Title = Instance.new("TextLabel")
+Title.Size = UDim2.new(1, 0, 0, 90)
+Title.Position = UDim2.fromScale(0.5, 0.35)
+Title.AnchorPoint = Vector2.new(0.5, 0.5)
+Title.BackgroundTransparency = 1
+Title.Text = "ELYXIONHUB"
+Title.Font = Enum.Font.GothamBlack
+Title.TextColor3 = Color3.fromHex("#FF3355")
+Title.TextSize = 56
+Title.Parent = BG
+
+-- Title glow pulse
+task.spawn(function()
+    while Title.Parent do
+        Tween:Create(Title, TweenInfo.new(1.2), {TextColor3 = Color3.fromHex("#FF5577")}):Play()
+        task.wait(1.2)
+        Tween:Create(Title, TweenInfo.new(1.2), {TextColor3 = Color3.fromHex("#DD2244")}):Play()
+        task.wait(1.2)
+    end
+end)
+
+local Status = Instance.new("TextLabel")
+Status.Size = UDim2.new(1, 0, 0, 24)
+Status.Position = UDim2.fromScale(0.5, 0.55)
+Status.AnchorPoint = Vector2.new(0.5, 0.5)
+Status.BackgroundTransparency = 1
+Status.Text = "Loading..."
+Status.Font = Enum.Font.GothamMedium
+Status.TextColor3 = Color3.fromHex("#9999AA")
+Status.TextSize = 16
+Status.Parent = BG
+
+local BarBg = Instance.new("Frame")
+BarBg.Size = UDim2.fromOffset(300, 12)
+BarBg.Position = UDim2.fromScale(0.5, 0.65)
+BarBg.AnchorPoint = Vector2.new(0.5, 0.5)
+BarBg.BackgroundColor3 = Color3.fromHex("#1A1A22")
+Instance.new("UICorner", BarBg).CornerRadius = UDim.new(1, 0)
+BarBg.Parent = BG
+
+local Bar = Instance.new("Frame")
+Bar.Size = UDim2.new(0, 0, 1, 0)
+Bar.BackgroundColor3 = Color3.fromHex("#FF3355")
+Instance.new("UICorner", Bar).CornerRadius = UDim.new(1, 0)
+Bar.Parent = BarBg
+
+-- Loading progress
+task.spawn(function()
+    local steps = {"Starting...", "Loading UI...", "Building Tabs...", "Ready!"}
+    for i, txt in ipairs(steps) do
+        Status.Text = txt
+        Tween:Create(Bar, TweenInfo.new(0.6), {Size = UDim2.new(i/#steps, 0, 1, 0)}):Play()
+        task.wait(0.6)
+    end
+    Status.Text = "✅ Press RIGHT SHIFT to Open"
+    task.wait(1.5)
+    LoadingUI:Destroy()
+end)
+
+-- ==============================================
+-- 📊 LIVE DISCORD STATS — NO BOOST NEEDED
+-- ==============================================
+local DISCORD_INVITE = "24HN79yPY"
+
+local function GetDiscordStats()
+    local total, online = "110", "7" -- Default fallback
+    pcall(function()
+        local url = "https://discord.com/api/v10/invites/"..DISCORD_INVITE.."?with_counts=true"
+        local res = Http:GetAsync(url)
+        local data = Http:JSONDecode(res)
+        if data and data.approximate_member_count then
+            total = tostring(data.approximate_member_count)
+            online = tostring(data.approximate_presence_count)
+        end
+    end)
+    return total, online
+end
+
+-- ==============================================
+-- 🚀 MAIN UI
+-- ==============================================
+local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/main.lua"))()
+
+local Window = WindUI:CreateWindow({
+    Title = "ELYXIONHUB",
+    Author = "lavatrapgaming",
+    Size = UDim2.fromOffset(580, 520),
+    ToggleKey = Enum.KeyCode.RightShift
+})
+
+-- 🏠 HOME
+local Home = Window:Tab({Title = "🏠 Home"})
+Home:Section({Title = "✅ LOADED", Desc = "Welcome, "..Local.Name})
+Home:Section({Title = "Controls", Desc = "RIGHT SHIFT = Open/Close"})
+Home:Button({Title = "Test", Callback = function()
+    WindUI:Notify({Title = "WORKING ✅", Content = "All good!", Duration = 3})
+end})
+
+-- 🍎 BLOX FRUITS
+local BF = Window:Tab({Title = "🍎 Blox Fruits"})
+BF:Button({Title = "Hoho Hub", Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI"))()
+end})
+BF:Button({Title = "Redz Hub", Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/tlredz/Scripts/refs/heads/main/main.luau"))()
+end})
+
+-- 🏡 BROOKHAVEN
+local BH = Window:Tab({Title = "🏡 Brookhaven"})
+BH:Button({Title = "Qwakk Hub", Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/FVLTqa3x"))()
+end})
+BH:Button({Title = "Avatar Cloner", Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Goku55050/Ares-roblox/main/aresxcloner.lua"))()
+end})
+
+-- 🔪 MURDER MYSTERY
+local MM = Window:Tab({Title = "🔪 Murder Mystery"})
+MM:Button({Title = "MM2 Script", Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/gumanba/Scripts/main/mm2"))()
+end})
+
+-- ⚔️ RIVALS
+local RV = Window:Tab({Title = "⚔️ Rivals"})
+RV:Button({Title = "Averlik Hub", Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Tarmaster/AverlikHub/main/Loader"))()
+end})
+
+-- 🐟 FISH IT
+local FI = Window:Tab({Title = "🐟 Fish It"})
+FI:Button({Title = "Arvyn Hub", Callback = function()
+    loadstring(game:HttpGet("https://api.arvynscripts.cloud/api/files/loader.lua"))()
+end})
+
+-- 📂 OWN SCRIPTS
+local Own = Window:Tab({Title = "📂 Own Scripts"})
+Own:Button({Title = "Your Script", Callback = function() end})
+
+-- 💬 DISCORD TAB — LIVE STATS
+local Discord = Window:Tab({Title = "💬 Discord"})
+
+local totalMembers, onlineNow = GetDiscordStats()
+
+Discord:Section({Title = "🌋 ELYXIONHUB SERVER", Desc = "Official Community"})
+Discord:Section({Title = "👥 Total Members", Desc = totalMembers .. " people"})
+Discord:Section({Title = "🟢 Online Now", Desc = onlineNow .. " active right now"})
+Discord:Section({Title = "Owner", Desc = "lavatrapgaming"})
+Discord:Section({Title = "Link", Desc = "discord.gg/"..DISCORD_INVITE})
+
+Discord:Button({Title = "📋 Copy Discord Link", Callback = function()
+    pcall(setclipboard, "https://discord.gg/"..DISCORD_INVITE)
+    WindUI:Notify({Title = "✅ Copied!", Content = "Link saved to clipboard", Duration = 3})
+end})
+
+-- Auto-refresh stats every 45 seconds
+task.spawn(function()
+    while task.wait(45) do
+        local newTotal, newOnline = GetDiscordStats()
+        if newTotal ~= totalMembers then
+            totalMembers = newTotal
+            WindUI:Notify({
+                Title = "📊 Stats Updated",
+                Content = "Members: "..newTotal.."  |  Online: "..newOnline,
+                Duration = 4
+            })
+        end
+    end
+end)
+
+WindUI:Notify({Title = "ELYXIONHUB ✅", Content = "Ready — Discord Stats Live!", Duration = 4})
+
+print("✅ Loaded — Discord: discord.gg/"..DISCORD_INVITE)
