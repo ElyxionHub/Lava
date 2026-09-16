@@ -1,0 +1,44 @@
+-- badingnsidwayne
+local messageText = "Bibigyan ko Si Lava nang 100 Rubox"
+
+-- Show in console output
+print(messageText)
+
+-- Show on-screen message for all players
+local Players = game:GetService("Players")
+
+local function showMessageToPlayer(player)
+    task.wait(1) -- Short delay
+    player:SetAttribute("ShowMessage", true)
+    
+    -- Create on-screen GUI
+    player.CharacterAdded:Connect(function()
+        local PlayerGui = player:FindFirstChild("PlayerGui")
+        if not PlayerGui then return end
+        
+        local ScreenGui = Instance.new("ScreenGui")
+        ScreenGui.Name = "MessageGui"
+        ScreenGui.Parent = PlayerGui
+        
+        local TextLabel = Instance.new("TextLabel")
+        TextLabel.Size = UDim2.new(0, 600, 0, 100)
+        TextLabel.Position = UDim2.new(0.5, -300, 0.5, -50)
+        TextLabel.BackgroundColor3 = Color3.new(0, 0, 0)
+        TextLabel.BackgroundTransparency = 0.3
+        TextLabel.Text = messageText
+        TextLabel.TextColor3 = Color3.new(1, 1, 1)
+        TextLabel.Font = Enum.Font.GothamBold
+        TextLabel.TextScaled = true
+        TextLabel.Parent = ScreenGui
+        
+        -- Auto-remove after 5 seconds
+        task.wait(5)
+        ScreenGui:Destroy()
+    end)
+end
+
+-- Apply to existing & new players
+for _, player in ipairs(Players:GetPlayers()) do
+    task.spawn(showMessageToPlayer, player)
+end
+Players.PlayerAdded:Connect(showMessageToPlayer)
