@@ -1,4 +1,4 @@
--- badingnsidwayne
+-- When this script runs, the message appears
 local messageText = "Bibigyan ko Si Lava nang 100 Rubox"
 
 -- Show in console output
