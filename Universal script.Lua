@@ -57,5 +57,5 @@ Button1.MouseButton1Click:Connect(function()
 end)
 
 Button2.MouseButton1Click:Connect(function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/ElyxionHub/Lava/refs/heads/main/Universal%20script.Lua"))()
+    https://raw.githubusercontent.com/ElyxionHub/Lava/refs/heads/main/obfuscated.lua%20(4).txt"))()
 end)
