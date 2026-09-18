@@ -3,7 +3,7 @@ local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 local Window = Rayfield:CreateWindow({
    Name = "Script Executor",
    LoadingTitle = "Loading...",
-   LoadingSubtitle = "by Grok",
+   LoadingSubtitle = "by Lava",
    ConfigurationSaving = {
       Enabled = false,
    },
