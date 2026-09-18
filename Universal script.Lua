@@ -1,74 +1,61 @@
--- =============================================
---  GET SCRIPT — Updated Link
--- =============================================
+-- ==========================================
+--  SIMPLE & GUARANTEED TO SHOW
+-- ==========================================
 
--- Show message first
-local MessageGui = Instance.new("ScreenGui")
+local ScreenGui = Instance.new("ScreenGui")
 local MainFrame = Instance.new("Frame")
 local Title = Instance.new("TextLabel")
-local LinkBox = Instance.new("TextBox")
-local CloseBtn = Instance.new("TextButton")
+local Button1 = Instance.new("TextButton")
+local Button2 = Instance.new("TextButton")
 
-MessageGui.Name = "GetScriptNotice"
-MessageGui.Parent = game:GetService("CoreGui")
-MessageGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+-- Properties
+ScreenGui.Name = "ScriptSelector"
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-MainFrame.Parent = MessageGui
-MainFrame.BackgroundColor3 = Color3.fromRGB(22, 22, 22)
-MainFrame.BorderColor3 = Color3.fromRGB(60, 60, 60)
-MainFrame.Position = UDim2.new(0.5, -240, 0.5, -150)
-MainFrame.Size = UDim2.new(0, 480, 0, 300)
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = ScreenGui
+MainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
+MainFrame.BorderColor3 = Color3.fromRGB(60, 60, 65)
+MainFrame.Position = UDim2.new(0.05, 0, 0.05, 0)
+MainFrame.Size = UDim2.new(0, 280, 0, 180)
 MainFrame.Active = true
 MainFrame.Draggable = true
 
+Title.Name = "Title"
 Title.Parent = MainFrame
-Title.BackgroundTransparency = 1
-Title.Size = UDim2.new(1, 0, 0, 130)
+Title.BackgroundColor3 = Color3.fromRGB(45, 45, 50)
+Title.Size = UDim2.new(1, 0, 0, 40)
 Title.Font = Enum.Font.GothamBold
-Title.Text = [[SCRIPT UPDATED
-
-Sorry — Our Script Has Changed!
-Please COPY the new link below
-and PASTE it into your executor:]]
+Title.Text = "Script Selector"
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.TextSize = 16
-Title.TextWrapped = true
 
-LinkBox.Parent = MainFrame
-LinkBox.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
-LinkBox.Position = UDim2.new(0, 20, 0, 140)
-LinkBox.Size = UDim2.new(1, -40, 0, 50)
-LinkBox.Font = Enum.Font.Code
-LinkBox.Text = "https://raw.githubusercontent.com/ElyxionHub/Lava/refs/heads/main/obfuscated.lua%20(4).txt"
-LinkBox.TextColor3 = Color3.fromRGB(0, 255, 127)
-LinkBox.TextSize = 11
-LinkBox.TextEditable = false
-LinkBox.ClearTextOnFocus = false
+Button1.Name = "Button1"
+Button1.Parent = MainFrame
+Button1.BackgroundColor3 = Color3.fromRGB(40, 140, 70)
+Button1.Position = UDim2.new(0.1, 0, 0.3, 0)
+Button1.Size = UDim2.new(0.8, 0, 0, 45)
+Button1.Font = Enum.Font.Gotham
+Button1.Text = "🟢 Good UI (New)"
+Button1.TextColor3 = Color3.fromRGB(255, 255, 255)
+Button1.TextSize = 14
 
-CloseBtn.Parent = MainFrame
-CloseBtn.BackgroundColor3 = Color3.fromRGB(200, 40, 40)
-CloseBtn.Position = UDim2.new(0, 20, 0, 210)
-CloseBtn.Size = UDim2.new(1, -40, 0, 50)
-CloseBtn.Font = Enum.Font.GothamBold
-CloseBtn.Text = "CLOSE"
-CloseBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-CloseBtn.TextSize = 15
+Button2.Name = "Button2"
+Button2.Parent = MainFrame
+Button2.BackgroundColor3 = Color3.fromRGB(50, 90, 160)
+Button2.Position = UDim2.new(0.1, 0, 0.65, 0)
+Button2.Size = UDim2.new(0.8, 0, 0, 45)
+Button2.Font = Enum.Font.Gotham
+Button2.Text = "🔵 Good UI (Old)"
+Button2.TextColor3 = Color3.fromRGB(255, 255, 255)
+Button2.TextSize = 14
 
-CloseBtn.MouseButton1Click:Connect(function()
-    MessageGui:Destroy()
+-- BUTTON CLICKS
+Button1.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/ElyxionHubScript/UniversalScript/refs/heads/main/obfuscated_script-1789699361831.lua.txt"))()
 end)
 
--- =============================================
---  AUTO LOAD THE SCRIPT
--- =============================================
-local ScriptLink = "https://raw.githubusercontent.com/ElyxionHub/Lava/refs/heads/main/obfuscated.lua%20(4).txt"
-
-task.wait(2) -- wait 2 seconds so you can see the notice
-
-local Success, Error = pcall(function()
-    loadstring(game:HttpGet(ScriptLink))()
+Button2.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/ElyxionHub/Lava/refs/heads/main/Universal%20script.Lua"))()
 end)
-
-if not Success then
-    warn("Failed to load script: " .. tostring(Error))
-end
