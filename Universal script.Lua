@@ -1,17 +1,17 @@
--- ⭐ ElyxionHub Choose — RAYFIELD ⭐
--- Black Screen → Star Animation → Choose Script
+-- ⭐ Script Selector — UPDATED ⭐
+-- Black Screen → Star Animation → Choose Version
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
 local PlayerGui = Players.LocalPlayer:WaitForChild("PlayerGui")
 
 -- Cleanup
-if PlayerGui:FindFirstChild("ElyxionHubChoose") then
-    PlayerGui.ElyxionHubChoose:Destroy()
+if PlayerGui:FindFirstChild("RayfieldScriptSelect") then
+    PlayerGui.RayfieldScriptSelect:Destroy()
 end
 
 -- ─── CREATE UI ───
 local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "ElyxionHubChoose"
+ScreenGui.Name = "RayfieldScriptSelect"
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 ScreenGui.DisplayOrder = 9999
 ScreenGui.ResetOnSpawn = false
@@ -38,13 +38,13 @@ Content.BackgroundTransparency = 1
 Content.Visible = false
 Content.Parent = BlackBg
 
--- Title — UPDATED NAME
+-- Title
 local Title = Instance.new("TextLabel")
 Title.Size = UDim2.new(0, 0, 0, 70)
 Title.Position = UDim2.new(0.5, 0, 0.18, 0)
 Title.AnchorPoint = Vector2.new(0.5, 0.5)
 Title.BackgroundTransparency = 1
-Title.Text = "✨ ELYXIONHUB CHOOSE ✨"
+Title.Text = "✨ SCRIPT SELECTION ✨"
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.Font = Enum.Font.GothamBold
 Title.TextSize = 36
@@ -95,7 +95,7 @@ local function MakeButton(yPos, label, desc, link)
         TweenService:Create(Btn, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(22, 22, 35)}):Play()
     end)
 
-    -- Click → Load Script
+    -- Click
     Btn.MouseButton1Click:Connect(function()
         ScreenGui:Destroy()
         task.wait(0.05)
@@ -105,13 +105,13 @@ local function MakeButton(yPos, label, desc, link)
     return Btn, BtnTitle, BtnSub
 end
 
--- ─── BUTTONS ───
--- Button 1: Good UI (Didn't update)
-local BtnOld, T1, S1 = MakeButton(0.42, "[ 1 ]  Good UI", "Didn't update • Legacy version",
+-- ─── YOUR BUTTONS ───
+-- Button 1: Updated label & link
+local BtnOld, T1, S1 = MakeButton(0.42, "[ 1 ]  Good UI (Didn't update)", "Legacy version — No longer updated",
     "https://raw.githubusercontent.com/ElyxionHub/Lava/refs/heads/main/obfuscated.lua%20(4).txt")
 
 -- Button 2: New Updated
-local BtnNew, T2, S2 = MakeButton(0.62, "[ 2 ]  GoodUi Updated ✅", "Universal Script • Recommended",
+local BtnNew, T2, S2 = MakeButton(0.62, "[ 2 ]  NEW — GoodUi Updated ✅", "Universal Script • Recommended",
     "https://raw.githubusercontent.com/ElyxionHubScript/UniversalScript/refs/heads/main/obfuscated_script-1789699361831.lua.txt")
 
 -- ─── STAR PARTICLES ───
